@@ -44,4 +44,11 @@ export interface IQuery {
 export interface Request {
   customer: ICustomer
   query: IQuery
+  type: ServerInstance
+}
+
+export enum ServerInstance {
+  REVIEW = "REVIEW",
+  USER = "USER",
+  PRODUCT = "PRODUCT"
 }

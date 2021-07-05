@@ -1,11 +1,11 @@
 import { promisify } from "util"
-import { ServerStatus, ICustomer, Request, QueryMethod } from "./constants/interfaces"
+import { ServerStatus, ICustomer, Request, QueryMethod, ServerInstance } from "./constants/interfaces"
 import { Customer } from "./customer"
 import { Queue } from "./queue"
 import { Server } from "./server"
 import Faker from "faker"
 
-console.log("Grocery Ordering Simulation")
+console.log("Multi Server Simulation")
 
 const customerInterArrivalTimes = Array(10).fill(0).map(() => Math.floor(Math.random() * 10) + 1)
 const serviceTimes = Array(10).fill(0).map(() => Math.floor(Math.random() * 10) + 1)
@@ -28,7 +28,9 @@ const SimultationRun = async () => {
           reviewID: Faker.lorem.text(),
           action: "REMOVE"
         }
-      }
+      },
+      type: Object.values(ServerInstance)
+        [Math.floor(Math.random()* 10) % Object.values(ServerInstance).length]
     }
     return request
   })

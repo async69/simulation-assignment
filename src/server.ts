@@ -28,8 +28,6 @@ export class Server implements IServer {
       this.setServerCustomerID(request.customer.getServerCustomerID())
       this.setCustomerServiceTime(request.customer.getCustomerServiceTime())
       this.setServerStatus(ServerStatus.BUSY)
-      console.log(`Customer ${this.currentCustomerID}, please wait for ${this.customerServiceTime} seconds`)
-      console.log(`You request to ${request.query.requestBody}`)
       sleep(this.customerServiceTime).then(() => {
         this.setServerStatus(ServerStatus.IDLE)
         console.log(`Served customer ${this.currentCustomerID}`)
